@@ -1,7 +1,10 @@
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 const MovieList = (props) => {
+    const FavouriteComponent = props.favouriteComponent
     return(
-        <>
+        <div>
             {props.movies.map( (movie, index) => (
                 <div className="image-container d-flex justify-content-start m3">
                     <img src={movie.Poster} alt="movie" />
@@ -9,11 +12,11 @@ const MovieList = (props) => {
                         onClick= {() => props.handleFavouritesClick(movie)}
                         className="overlay d-flex align-items-center justify-content-center"
                     >
-                        <favouriteComponent />
+                        <FavouriteComponent />
                     </div>
                 </div>
             ))}
-        </>
+        </div>
     )
 }
 

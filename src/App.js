@@ -4,11 +4,12 @@ import "./App.css";
 import MovieList from "./components/MovieList";
 import MovieListHeading from "./components/MovieListHeading";
 import SearchBox from "./components/SearchBox";
-import AddFavourites from "./components/AddFavourites"
+import AddFavourites from "./components/AddFavourites";
+import RemoveFavourites from "./components/RemoveFavourites";
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState("");
   const [favourites, setFavourites] = useState([]);
 
   const getMovieRequest = async (searchValue) => {
@@ -16,19 +17,25 @@ function App() {
 
     const response = await fetch(url);
     const responseJson = await response.json();
-    
-    if(responseJson.Search) {
-      setMovies(responseJson.Search)
-    }
-  }
 
-  useEffect(()=>{
+    if (responseJson.Search) {
+      setMovies(responseJson.Search);
+    }
+  };
+
+  useEffect(() => {
     getMovieRequest(searchValue);
-  },[searchValue]); 
+  }, [searchValue]);
 
   const AddFavouriteMovie = (movie) => {
-    const newFavouriteList = [...favourites,movie];
+    const newFavouriteList = [...favourites, movie];
     setFavourites(newFavouriteList);
+  };
+
+  const removeFavouriteMovie = (movie) => {
+    const newFavouriteList = favourites.filter(
+      (favourite) => favourite.imdbID !==movie.imdbID
+    );
   }
 
   return (
@@ -38,10 +45,10 @@ function App() {
         <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
       </div>
       <div className="row">
-        <MovieList 
-        movies={movies}
-        handleFavouritesClick={AddFavouriteMovie}
-        favouriteComponent={AddFavourites}
+        <MovieList
+          movies={movies}
+          handleFavouritesClick={AddFavouriteMovie}
+          favouriteComponent={AddFavourites}
         />
       </div>
       <div className="row d-flex align-items-center mt-4 mb-4">
@@ -49,8 +56,9 @@ function App() {
       </div>
       <div className="row">
         <MovieList 
-          movie={favourites}
-          
+          movies={favourites} 
+          handleFavouritesClick={removeFavouriteMovie}
+          favouriteComponent={RemoveFavourites}
         />
       </div>
     </div>
