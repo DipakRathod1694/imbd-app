@@ -8,6 +8,12 @@ body{
   flex-wrap: nowrap;
 }
 
+/* .row{
+  display: flex;
+  margin-right: -15px;
+  margin-left: -15px;
+} */
+
 .image-container{
   position: relative;
   transition: transform 0.2s;

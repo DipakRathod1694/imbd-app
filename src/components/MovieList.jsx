@@ -1,10 +1,10 @@
-import "bootstrap/dist/css/bootstrap.min.css";
+import React from "react";
 
 
 const MovieList = (props) => {
     const FavouriteComponent = props.favouriteComponent
     return(
-        <div>
+        <>
             {props.movies.map( (movie, index) => (
                 <div className="image-container d-flex justify-content-start m3">
                     <img src={movie.Poster} alt="movie" />
@@ -16,7 +16,7 @@ const MovieList = (props) => {
                     </div>
                 </div>
             ))}
-        </div>
+        </>
     )
 }
 
