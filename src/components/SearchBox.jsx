@@ -1,4 +1,4 @@
-const SeacrhBox = (props) => {
+const SearchBox = (props) => {
   return (
     <div className="col col-sm-4">
       <input
@@ -11,4 +11,4 @@ const SeacrhBox = (props) => {
   );
 };
 
-export default SeacrhBox;
+export default SearchBox;
